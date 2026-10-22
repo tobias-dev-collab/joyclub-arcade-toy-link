@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "JOYclub Arcade Toy-Link",
+  "version": "1.0.0",
+  "description": "Lässt dein eigenes Toy vibrieren, wenn du in der JOYclub Arcade gewinnst. Steuerung über Intiface Central auf deinem PC.",
+  "permissions": ["storage"],
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [{
+    "matches": ["https://www.joyclub.de/*", "https://joyclub.de/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle",
+    "all_frames": true
+  }],
+  "action": {"default_title": "Arcade Toy-Link", "default_popup": "popup.html"},
+  "minimum_chrome_version": "116"
+}
