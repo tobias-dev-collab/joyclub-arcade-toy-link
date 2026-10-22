@@ -25,3 +25,17 @@ $("connect").onclick = async () => {
 };
 $("test").onclick = async () => { status("Test läuft …"); const r = await ask("TOYLINK_TEST", {kind: "test"}); r.ok ? status("Test fertig – hast du's gespürt?", "ok") : status(r.error, "bad"); };
 $("stop").onclick = async () => { await ask("TOYLINK_STOP"); status("Gestoppt."); };
+
+function showSeen(v){
+  if(!v) return;
+  $("seen").hidden = false;
+  $("seenText").textContent = v.text;
+  $("seenResult").textContent = `${new Date(v.at).toLocaleTimeString("de-DE")} · ${v.result}`;
+}
+chrome.storage.local.get("lastSeen", v => showSeen(v.lastSeen));
+chrome.storage.onChanged.addListener(c => { if (c.lastSeen) showSeen(c.lastSeen.newValue); });
+chrome.storage.local.get("contentAlive", v => {
+  if (!v.contentAlive) return;
+  const mins = Math.round((Date.now() - v.contentAlive.at) / 60000);
+  $("alive").textContent = `Chat-Leser aktiv auf ${v.contentAlive.url} (geladen vor ${mins} min)`;
+});

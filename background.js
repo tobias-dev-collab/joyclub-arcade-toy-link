@@ -136,6 +136,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     })();
     return true;
   }
+  if (message?.type === "TOYLINK_DIAG") {
+    fetch("http://127.0.0.1:8766/chat/debug", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({type: ("toylink " + String(message.text || "")).slice(0, 80)})}).catch(() => {});
+    return;
+  }
   if (message?.type === "TOYLINK_STATUS") {
     settings().then(s => ensureDevices(s.intifaceUrl)).then(names => sendResponse({ok: true, devices: names}))
       .catch(e => sendResponse({ok: false, error: e.message}));

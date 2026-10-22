@@ -26,6 +26,10 @@
   .note{font-size:11px;color:var(--mute);margin:0}
   fieldset{border:1px solid var(--line);border-radius:10px;padding:8px 10px;display:grid;gap:6px;margin:0}
   legend{color:var(--mute);font-size:12px;padding:0 4px}
+  .seen{display:grid;gap:3px;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px}
+  .seen b{color:var(--gold);font-size:11px;letter-spacing:.04em}
+  #seenText{color:var(--ink);word-break:break-word}
+  #seenResult{color:var(--mute)}
 </style>
 </head>
 <body>
@@ -43,6 +47,8 @@
   <label>Intiface-Adresse<input type="text" id="intifaceUrl" autocomplete="off"></label>
   <div class="buttons"><button id="connect">Toy suchen</button><button class="primary" id="test">Test</button><button id="stop">Stopp</button></div>
   <div id="status" role="status" aria-live="polite"></div>
+  <div id="seen" class="seen" hidden><b>Zuletzt im Chat gesehen</b><span id="seenText"></span><span id="seenResult"></span></div>
+  <p class="note" id="alive">Chat-Leser noch nicht aktiv – Livestream-Tab neu laden.</p>
   <p class="note">Dein Toy wird nur über Intiface Central auf deinem eigenen PC gesteuert. Die Erweiterung liest lediglich die Siegermeldungen im Livestream-Chat mit und sendet nichts.</p>
 </main>
 <script src="popup.js"></script>
