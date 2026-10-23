@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.6 – 2026-10-23
+- **Stream festlegen:** Im Toy-Link-Fenster legt „Diesen Stream festlegen“ den aktuellen Livestream fest. Danach zählen nur Siegermeldungen aus genau diesem Stream, und der Name des Streamers wird automatisch übernommen. „Aufheben“ entfernt die Festlegung.
+- **Kein Neuladen mehr nötig:** Nach Installation, Update oder „Neu laden“ klinkt sich Toy-Link selbst in offene JOYclub-Tabs ein.
+- Neue Berechtigungen `tabs` und `scripting` sowie Zugriff auf `joyclub.de` für die beiden Funktionen oben.
+
 ## 1.0.4 – 2026-10-22
 ### Zuverlässigere Erkennung
 - Siegermeldungen werden auch erkannt, wenn JOYclub Chat-Elemente wiederverwendet und neue Nachrichten hineinschreibt. Jede Meldung wird genau einmal ausgewertet.

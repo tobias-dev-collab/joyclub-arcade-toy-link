@@ -1,5 +1,10 @@
 (() => {
   "use strict";
+  // Wird nach Installation/Update auch in schon offene Tabs eingespielt (background.js).
+  // Eine noch gültige Kopie läuft schon? Dann nicht doppelt starten.
+  const alive = () => { try { return !!chrome.runtime?.id; } catch { return false; } };
+  if (globalThis.__toyLinkAlive?.()) return;
+  globalThis.__toyLinkAlive = alive;
   // Liest im JOYclub-Livestream-Chat die Meldungen der Arcade mit und meldet
   // dem Hintergrund, wenn DEIN Name gewinnt. Es wird nichts gesendet; der Chat
   // bleibt unverändert. Zur Fehlersuche merkt sich das Tool die zuletzt
@@ -109,7 +114,8 @@
     setTimeout(() => { queued = false; const nodes = added; added = []; scan(false); scanAdded(nodes); }, 200);
   });
   scan(true);
-  setInterval(() => scan(false), 2000);   // Sicherheitsnetz, falls eine Änderung kein Ereignis auslöst
+  const every = (fn, ms) => { const id = setInterval(() => { if (!alive()) { clearInterval(id); observer.disconnect(); return; } fn(); }, ms); };
+  every(() => scan(false), 2000);   // Sicherheitsnetz, falls eine Änderung kein Ereignis auslöst
   const start = () => { if (document.body) observer.observe(document.body, {childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ["aria-label"]}); else setTimeout(start, 200); };
   start();
   const census = () => {
@@ -119,6 +125,6 @@
   };
   let lastCensus = "";
   setTimeout(() => { lastCensus = census(); diag(`start ${location.pathname.slice(0, 25)} ${lastCensus}`); }, 3000);
-  setInterval(() => { const c = census(); if (c !== lastCensus) { lastCensus = c; diag(c); } }, 15000);
+  every(() => { const c = census(); if (c !== lastCensus) { lastCensus = c; diag(c); } }, 15000);
   try { chrome.storage.local.set({contentAlive: {at: Date.now(), url: location.hostname + location.pathname.slice(0, 40)}}); } catch {}
 })();

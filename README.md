@@ -1,5 +1,7 @@
 # JOYclub Arcade Toy-Link
 
+> **Nur für Erwachsene (ab 18).** Toy-Link steuert Sexspielzeug und ist für Livestreams auf JOYclub gedacht, einer Plattform für Erwachsene.
+
 **Gewinnst du im Livestream, spürst du es.** Toy-Link ist eine kleine Erweiterung für Chrome und Edge. Sie lässt dein eigenes Toy vibrieren, sobald du in der JOYclub Arcade ein Rennen gewinnst oder bei Devil Slots den Jackpot knackst. Für Platz 2 und 3 gibt es ein kürzeres Signal.
 
 - Läuft komplett **auf deinem eigenen PC** über die kostenlose App [Intiface Central](https://intiface.com/central).
@@ -22,6 +24,7 @@
 10. [Datenschutz und Sicherheit](#10-datenschutz-und-sicherheit)
 11. [Häufige Fragen](#11-häufige-fragen)
 12. [Für Streamer](#12-für-streamer)
+13. [Lizenz](#13-lizenz)
 
 ---
 
@@ -49,6 +52,10 @@ Intiface Central ist die App, die dein Toy über Bluetooth steuert. Toy-Link sag
 4. Wechsle links zu **Devices** und klick auf **Start Scanning**.
 5. Schalte dein Toy ein, wie beim normalen Koppeln. Warte, bis es in der Liste auftaucht.
 6. Klick auf **Stop Scanning**.
+
+> **Windows – Firewall-Abfrage:** Beim ersten Start des Servers fragt Windows eventuell, ob Intiface Central „im Netzwerk kommunizieren“ darf. Klick auf **Zugriff zulassen**. Toy-Link verbindet sich nur innerhalb deines PCs, die Freigabe für **private Netzwerke** reicht also.
+
+> **Mac – Bluetooth-Berechtigung:** Beim ersten Scannen fragt macOS, ob Intiface Central Bluetooth verwenden darf. Klick auf **Erlauben**. Hast du versehentlich abgelehnt, findet Intiface kein Toy: Öffne *Systemeinstellungen → Datenschutz & Sicherheit → Bluetooth*, schalte Intiface Central ein und starte Intiface neu.
 
 > **Lovense-Nutzer:** Schließ vorher die Lovense-App (Lovense Remote / Lovense Connect) komplett, auch auf dem Handy. Ein Toy kann nur mit einer App gleichzeitig verbunden sein.
 
@@ -95,41 +102,58 @@ Toy-Link ist nicht im Chrome Web Store. Du lädst die Erweiterung deshalb einmal
 
 > Manchmal zeigt der Browser beim Start einen Hinweis wie „Erweiterungen im Entwicklermodus deaktivieren“. Klick dort auf **Abbrechen** bzw. schließ den Hinweis, sonst wird Toy-Link ausgeschaltet.
 
+Ein schon offener JOYclub-Tab muss nach der Installation **nicht** neu geladen werden. Toy-Link klinkt sich selbst in offene JOYclub-Tabs ein.
+
 ---
 
 ## 5. Toy-Link einstellen und testen
 
-Klick auf das Toy-Link-Symbol in der Browserleiste. Es öffnet sich ein kleines Fenster:
+### Stream festlegen (empfohlen)
+
+1. Öffne in Chrome bzw. Edge den **Livestream des Streamers**, bei dem die Arcade läuft.
+2. Klick auf das Toy-Link-Symbol in der Browserleiste.
+3. Klick im Kasten **Stream** auf **Diesen Stream festlegen**.
+
+Ab dann reagiert Toy-Link **nur in diesem Stream**. Der Name des Streamers wird dabei automatisch ins Feld „Name des Streamers“ übernommen. So kann niemand im Chat oder in einem anderen Stream dein Toy auslösen. Im Kasten steht danach der Stream mit einem grünen Haken „✓ dieser Tab“, solange du in genau diesem Stream bist.
+
+Willst du Toy-Link später in einem anderen Stream nutzen, öffne diesen und klick dort wieder auf **Diesen Stream festlegen**. **Aufheben** entfernt die Festlegung; dann reagiert Toy-Link in jedem Livestream.
+
+> Der Knopf ist ausgegraut, wenn der aktuelle Tab kein JOYclub-Livestream ist oder dieser Stream schon festgelegt ist.
+
+### Die übrigen Felder
 
 | Feld | Was eintragen |
 | --- | --- |
 | **Toy-Link aktiv** | Haken setzen (Hauptschalter) |
 | **Dein JOYclub-Name** | Dein Name **genau so, wie er im Chat steht**, mit Unterstrichen, Zahlen und Punkten. Groß- und Kleinschreibung, doppelte Leerzeichen, Emoji und Geschlechtssymbole (♀ ♂) sind egal. |
-| **Name des Streamers** | Der JOYclub-Name des Streamers, in dessen Livestream die Arcade läuft. Dann zählen nur dessen Meldungen, und niemand kann dein Toy mit einer gefälschten Chatnachricht auslösen. **Sehr empfohlen.** |
+| **Name des Streamers** | Wird beim Festlegen des Streams automatisch ausgefüllt. Wird er nicht erkannt, trag den JOYclub-Namen des Streamers selbst ein. Dann zählen nur dessen Meldungen. |
 | **Stärke** | Maximale Stärke von 10 bis 100 %. Zum Start eignen sich 50–70 %. |
 | **Vibrieren bei** | Sieg (Platz 1), Platz 2 und 3, Jackpot bei Devil Slots, jeweils einzeln an- oder abschaltbar |
 | **Intiface-Adresse** | Bleibt normalerweise `ws://127.0.0.1:12345`. Nur ändern, wenn du in Intiface einen anderen Port eingestellt hast. |
 
 Die Eingaben werden automatisch gespeichert.
 
-**Jetzt testen:**
+### Testen
 
 1. Intiface Central ist offen, der Server läuft, und dein Toy steht unter *Devices*.
 2. Klick im Toy-Link-Fenster auf **Toy suchen**. Unten erscheint grün „Verbunden: *Name deines Toys*“.
 3. Klick auf **Test**. Dein Toy vibriert etwa 2 Sekunden lang ansteigend.
 4. **Stopp** beendet jede Vibration sofort.
 
-Klappt der Test, ist alles fertig. Lade zum Schluss den JOYclub-Livestream-Tab einmal neu (F5), falls er schon offen war.
-
-**Läuft der Chat-Leser?** Öffne den Livestream und dann das Toy-Link-Fenster. Unten steht „Chat-Leser aktiv auf joyclub.de/…“. Steht dort „Chat-Leser noch nicht aktiv“, lade den Livestream-Tab neu.
+**Läuft der Chat-Leser?** Öffne den Livestream und dann das Toy-Link-Fenster. Unten steht „Chat-Leser aktiv auf joyclub.de/…“. Steht dort „Chat-Leser noch nicht aktiv – Livestream öffnen“, öffne den Livestream bzw. lade ihn einmal neu (F5).
 
 ---
 
 ## 6. Im Livestream
 
-- Lass **Intiface Central während des Streams geöffnet** und den Server gestartet.
-- Spiel wie gewohnt mit, zum Beispiel mit `!duck`, `!turtle`, `!hover` oder den anderen Rennbefehlen.
-- Gewinnst du, schreibt die Arcade kurz darauf etwa „🏁 *Dein Name* gewinnt … und bekommt 50 Punkte!“ in den Chat. Toy-Link erkennt das und dein Toy legt los.
+**Das muss während des ganzen Streams offen bleiben:**
+
+- **Intiface Central** mit gestartetem Server.
+- **Chrome bzw. Edge mit dem Livestream-Tab.** Der Tab darf im Hintergrund liegen, aber nicht geschlossen werden. Toy-Link liest nur mit, solange der Livestream in einem Tab geöffnet ist. Nutzt du die Funktion **Speicher sparen** (Chrome: *Einstellungen → Leistung*; Edge: *Ruhezustand für Tabs*), trag dort `joyclub.de` bei den Websites ein, die immer aktiv bleiben, damit der Tab nicht schlafen gelegt wird.
+- **Dein PC muss wach bleiben.** Geht er in den Ruhemodus oder Standby, reißen die Verbindungen ab. Stell das Energiesparen für die Dauer des Streams ab oder höher. Nach dem Aufwachen: Intiface-Server prüfen und den Livestream-Tab neu laden.
+- **Das Toy** eingeschaltet und mit genug Akku. Schaltet es sich selbst ab, verschwindet es aus Intiface; einschalten und in Intiface neu scannen.
+
+Dann spiel wie gewohnt mit, zum Beispiel mit `!duck`, `!turtle`, `!hover` oder den anderen Rennbefehlen. Gewinnst du, schreibt die Arcade kurz darauf etwa „🏁 *Dein Name* gewinnt … und bekommt 50 Punkte!“ in den Chat. Toy-Link erkennt das und dein Toy legt los.
 
 | Ereignis | Muster |
 | --- | --- |
@@ -152,6 +176,7 @@ Nach jedem Signal gibt es 8 Sekunden Pause, damit nichts doppelt auslöst. Alte 
 | --- | --- |
 | *Dein Sieg / Platz 2 / Platz 3 / Jackpot – Toy ausgelöst* | Alles richtig erkannt. Vibriert trotzdem nichts, liegt es an Intiface oder dem Toy (siehe Tabelle unten). |
 | *Nicht dein Name (gewonnen hat „…“)* | Jemand anderes hat gewonnen, oder dein Name ist anders eingetragen als im Chat. Vergleiche die Schreibweise. |
+| *Ignoriert: nicht der festgelegte Stream* | Die Meldung kam aus einem anderen Livestream als dem festgelegten. Leg den richtigen Stream fest oder heb die Festlegung auf. |
 | *Ignoriert: kam von „…“, nicht vom eingetragenen Streamer* | Der Streamer-Name stimmt nicht. Korrigiere ihn oder lass das Feld zum Testen leer. |
 | *Kein eigener Name eingetragen* | Trag deinen JOYclub-Namen ein. |
 | *Toy-Link ist ausgeschaltet* | Setz den Haken bei **Toy-Link aktiv**. |
@@ -159,11 +184,12 @@ Nach jedem Signal gibt es 8 Sekunden Pause, damit nichts doppelt auslöst. Alte 
 
 | Meldung / Problem | Lösung |
 | --- | --- |
-| **„Intiface Central nicht erreichbar“** | Intiface öffnen und den Server starten (▶). Die Intiface-Adresse in Toy-Link muss zum Port in Intiface passen (*Settings → Server Port*, Standard `12345`). |
-| **„Kein Toy gefunden“** | Toy einschalten und in Intiface unter *Devices* **Start Scanning**, bis es erscheint. Bei Lovense die Lovense-App schließen. Bluetooth am PC eingeschaltet? |
+| **„Intiface Central nicht erreichbar“** | Intiface öffnen und den Server starten (▶). Die Intiface-Adresse in Toy-Link muss zum Port in Intiface passen (*Settings → Server Port*, Standard `12345`). Unter Windows prüfen, ob die Firewall-Abfrage abgelehnt wurde (siehe Schritt 2). |
+| **„Kein Toy gefunden“** | Toy einschalten und in Intiface unter *Devices* **Start Scanning**, bis es erscheint. Bei Lovense die Lovense-App schließen. Bluetooth am PC eingeschaltet? Am Mac die Bluetooth-Berechtigung prüfen (siehe Schritt 2). |
 | **„Intiface antwortet nicht“** | Intiface Central einmal schließen, neu öffnen, Server starten, dann in Toy-Link **Toy suchen**. |
-| **Test geht, im Stream passiert nichts** | 1. Stimmt dein Name **exakt** mit dem Chat überein? 2. Ist der Streamer-Name richtig geschrieben? Im Zweifel das Feld leeren und testen. 3. Hat der Streamer die Siegermeldungen im Chat eingeschaltet? Steht nach dem Rennen keine „… gewinnt …“-Nachricht im Chat, liegt es daran. 4. Livestream-Tab neu laden (F5). |
-| **„Chat-Leser noch nicht aktiv“** | Den Livestream-Tab neu laden (F5). Nach einem Update von Toy-Link ist das immer nötig. |
+| **Test geht, im Stream passiert nichts** | 1. Was steht unter „Zuletzt im Chat gesehen“? (Tabelle oben) 2. Stimmt dein Name **exakt** mit dem Chat überein? 3. Ist der richtige Stream festgelegt? 4. Hat der Streamer die Siegermeldungen im Chat eingeschaltet? Steht nach dem Rennen keine „… gewinnt …“-Nachricht im Chat, liegt es daran. 5. Livestream-Tab neu laden (F5). |
+| **Ging erst, dann nicht mehr** | Meist war der PC kurz im Ruhemodus, das Toy hat sich abgeschaltet oder Intiface wurde geschlossen. Siehe Abschnitt 6. |
+| **„Chat-Leser noch nicht aktiv“** | Den Livestream öffnen bzw. den Tab neu laden (F5). |
 | **Toy-Link-Symbol fehlt** | Puzzle-Symbol 🧩 anklicken und Toy-Link anheften (siehe Schritt 4). |
 | **Erweiterung ist plötzlich weg oder ausgegraut** | Der Ordner aus Schritt 3 wurde verschoben oder gelöscht, oder der Entwicklermodus wurde ausgeschaltet. Ordner wiederherstellen bzw. Entwicklermodus einschalten und unter `chrome://extensions` auf **Neu laden** ↻ klicken. |
 | **Fehler „Manifest-Datei fehlt“ beim Laden** | Du hast den falschen Ordner gewählt. Nimm den Ordner, in dem die `manifest.json` direkt liegt (siehe Hinweis „doppelter Ordner“). |
@@ -178,9 +204,8 @@ Unten im Toy-Link-Fenster stehen immer die letzte Auslösung bzw. der letzte Feh
 1. Lade wie in Schritt 3 die neue ZIP-Datei herunter.
 2. Ersetze den Inhalt deines bisherigen Toy-Link-Ordners durch die neuen Dateien. Ordnername und Ort bleiben gleich.
 3. Öffne `chrome://extensions` (bzw. `edge://extensions`) und klick bei Toy-Link auf **Neu laden** ↻.
-4. Lade den Livestream-Tab neu.
 
-Deine Einstellungen (Name, Stärke usw.) bleiben dabei erhalten. Welche Version du hast, steht auf der Kachel unter `chrome://extensions`. Was sich geändert hat, steht im [CHANGELOG](CHANGELOG.md).
+Offene Livestream-Tabs musst du nicht neu laden, Toy-Link klinkt sich selbst wieder ein. Deine Einstellungen (Name, Stärke, festgelegter Stream usw.) bleiben erhalten. Welche Version du hast, steht auf der Kachel unter `chrome://extensions`. Was sich geändert hat, steht im [CHANGELOG](CHANGELOG.md).
 
 ---
 
@@ -196,9 +221,19 @@ Deine Einstellungen (Name, Stärke usw.) bleiben dabei erhalten. Welche Version 
 
 - **Nur lesen:** Toy-Link liest auf `joyclub.de` ausschließlich die Chatnachrichten im Livestream mit und sucht darin nach Arcade-Meldungen mit deinem Namen. Es schreibt nichts in den Chat und klickt nichts an.
 - **Nichts verlässt deinen PC:** Verbindungen gibt es nur zu Programmen auf deinem eigenen Rechner (`127.0.0.1`): zu Intiface Central und, falls auf demselben PC eine JOYclub Arcade läuft, zu deren Fehlerprotokoll. Das betrifft praktisch nur Streamer, die Toy-Link selbst testen. Bei Zuschauern läuft keine Arcade, dort geht diese Meldung ins Leere. Es gibt keine Server im Internet, keine Analyse und kein Tracking.
-- **Gespeichert wird nur lokal im Browser:** dein Name, der Streamer-Name, die Stärke, die Schalter, Zeit und Art der letzten Auslösung sowie die zuletzt erkannte Siegermeldung (für die Anzeige „Zuletzt im Chat gesehen“).
-- **Berechtigungen:** Die Erweiterung hat Zugriff auf `joyclub.de`, auf den eigenen Speicher (`storage`) und auf die lokale Arcade-Adresse `127.0.0.1:8766`. Andere Webseiten sieht sie nicht.
-- **Schutz vor Missbrauch:** Mit eingetragenem Streamer-Namen zählen nur dessen Meldungen. Nach jedem Signal gibt es 8 Sekunden Sperre. Die Stärke deckelst du selbst.
+- **Gespeichert wird nur lokal im Browser:** dein Name, der Streamer-Name, der festgelegte Stream (Adresse und Titel), die Stärke, die Schalter, Zeit und Art der letzten Auslösung sowie die zuletzt erkannte Siegermeldung (für die Anzeige „Zuletzt im Chat gesehen“).
+- **Berechtigungen** – und wofür sie gebraucht werden:
+
+  | Berechtigung | Wofür |
+  | --- | --- |
+  | Zugriff auf `joyclub.de` | Den Livestream-Chat mitlesen |
+  | `storage` | Deine Einstellungen speichern |
+  | `tabs` | Beim Festlegen erkennen, welcher Livestream im aktuellen Tab offen ist |
+  | `scripting` | Nach Installation oder Update den Chat-Leser in schon offene JOYclub-Tabs einspielen |
+  | Zugriff auf `127.0.0.1:8766` | Diagnose an eine Arcade auf demselben PC (nur für Streamer relevant) |
+
+  Andere Webseiten liest Toy-Link nicht.
+- **Schutz vor Missbrauch:** Mit festgelegtem Stream zählen nur Meldungen aus diesem Stream, mit eingetragenem Streamer-Namen nur dessen Meldungen. Nach jedem Signal gibt es 8 Sekunden Sperre. Die Stärke deckelst du selbst.
 - **Offener Quellcode:** Alles steht in den fünf Dateien dieses Repos und lässt sich nachlesen.
 
 Für Streamer: Läuft Toy-Link auf demselben PC wie die Arcade, erscheinen seine Diagnosezeilen (beginnend mit „toylink“, markiert als „Browser-Diagnose“) im Regiepult im Chat-Protokoll, sofern dort die Diagnose eingeschaltet ist. So lässt sich nachvollziehen, was die Erweiterung im Chat sieht.
@@ -220,7 +255,10 @@ Ja. Alle Toys, die in Intiface verbunden sind, vibrieren gemeinsam.
 Nein. Toy-Link sendet nichts, weder in den Chat noch an den Streamer.
 
 **Kann jemand anderes mein Toy auslösen?**
-Nur über eine echte Siegermeldung mit deinem Namen. Trag den Streamer-Namen ein, dann zählen ausschließlich Meldungen vom Konto des Streamers.
+Nur über eine echte Siegermeldung mit deinem Namen. Leg den Stream fest, dann zählen ausschließlich Meldungen aus diesem Stream vom Konto des Streamers.
+
+**Ich schaue bei mehreren Streamern zu.**
+Leg jeweils den Stream fest, in dem du gerade mitspielst, oder heb die Festlegung auf. Dann reagiert Toy-Link in jedem Livestream mit Arcade.
 
 **Ich habe meinen JOYclub-Namen geändert.**
 Trag den neuen Namen im Toy-Link-Fenster ein, fertig.
@@ -236,7 +274,13 @@ Damit Toy-Link bei deinen Zuschauern reagiert, muss die Arcade Siegermeldungen i
 
 - Im **Regiepult → Optionen** den Schalter **„Toy-Link: Sieger und Jackpots immer im Chat melden“** einschalten. Damit gehen nur diese Meldungen in den Chat, auch wenn die übrigen Chat-Antworten aus sind.
 - Die Arcade-Chrome-Erweiterung muss verbunden sein (grüner Punkt oben rechts im Regiepult).
-- Sag deinen Zuschauern deinen **genauen JOYclub-Namen** für das Feld „Name des Streamers“.
+- Sag deinen Zuschauern, dass sie in deinem Stream auf **Diesen Stream festlegen** klicken sollen.
 
 Diesen Link kannst du im Stream oder in deinem Profil teilen, sobald das Repo öffentlich ist:
 `https://github.com/tobias-dev-collab/joyclub-arcade-toy-link`
+
+---
+
+## 13. Lizenz
+
+[MIT-Lizenz](LICENSE): Du darfst Toy-Link frei nutzen, verändern und weitergeben, solange der Lizenzhinweis erhalten bleibt. Die Nutzung erfolgt ohne Gewähr.

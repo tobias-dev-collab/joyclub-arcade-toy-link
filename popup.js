@@ -39,3 +39,36 @@ chrome.storage.local.get("contentAlive", v => {
   const mins = Math.round((Date.now() - v.contentAlive.at) / 60000);
   $("alive").textContent = `Chat-Leser aktiv auf ${v.contentAlive.url} (geladen vor ${mins} min)`;
 });
+
+// Der Stream steckt bei JOYclub im Parameter ?channel=… (…/livestream/channel/?channel=<id>).
+function streamKey(url) {
+  try {
+    const u = new URL(url), channel = (u.searchParams.get("channel") || "").trim().toLowerCase();
+    const base = (u.hostname.replace(/^www\./, "") + u.pathname).toLowerCase().replace(/\/+$/, "");
+    return channel ? `${base}?channel=${channel}` : base;
+  } catch { return ""; }
+}
+const isLivestream = url => /^https:\/\/(www\.)?joyclub\.de\/livestream\//i.test(url || "") && /[?&]channel=/.test(url || "");
+let activeTab = null;
+async function renderStream() {
+  const {myStream} = await chrome.storage.local.get("myStream");
+  const el = $("streamName"), key = streamKey(activeTab?.url || "");
+  if (myStream?.key) {
+    const here = key === myStream.key;
+    el.textContent = `${myStream.title || "Livestream"} · Channel ${(myStream.key.split("?channel=")[1] || "").slice(0, 8)}…${here ? " ✓ dieser Tab" : ""}`;
+    el.className = here ? "ok" : "";
+  } else { el.textContent = "nicht festgelegt – reagiert in jedem Livestream"; el.className = ""; }
+  $("setStream").disabled = !isLivestream(activeTab?.url) || key === myStream?.key;
+  $("clearStream").disabled = !myStream?.key;
+}
+$("setStream").onclick = async () => {
+  if (!isLivestream(activeTab?.url)) return;
+  const title = (activeTab.title || "").replace(/\s*[-–|]\s*JOYclub.*$/i, "").trim();
+  const host = (/Livestream von\s+(.+)$/i.exec(title) || [])[1] || "";
+  await chrome.storage.local.set({myStream: {key: streamKey(activeTab.url), title, at: Date.now()}, ...(host ? {hostName: host.trim()} : {})});
+  if (host) $("hostName").value = host.trim();
+  status(host ? `Stream festgelegt. Streamer: ${host.trim()}` : "Stream festgelegt.", "ok");
+  renderStream();
+};
+$("clearStream").onclick = async () => { await chrome.storage.local.remove("myStream"); renderStream(); };
+chrome.tabs.query({active: true, currentWindow: true}).then(([t]) => { activeTab = t; renderStream(); });

@@ -13,6 +13,20 @@ const PATTERNS = {
   test:    [[.3, 500], [.7, 500], [1, 700]],
 };
 const COOLDOWN_MS = 8000;
+// Der Stream steckt bei JOYclub im Parameter ?channel=… (…/livestream/channel/?channel=<id>).
+function streamKey(url) {
+  try {
+    const u = new URL(url), channel = (u.searchParams.get("channel") || "").trim().toLowerCase();
+    const base = (u.hostname.replace(/^www\./, "") + u.pathname).toLowerCase().replace(/\/+$/, "");
+    return channel ? `${base}?channel=${channel}` : base;
+  } catch { return ""; }
+}
+// Ist ein Stream festgelegt, zählen nur Siegermeldungen aus genau diesem Stream.
+async function inMyStream(sender) {
+  const {myStream} = await chrome.storage.local.get("myStream");
+  if (!myStream?.key) return true;
+  return streamKey(sender.tab?.url || sender.url || "") === myStream.key;
+}
 
 let ws = null, connecting = null, nextId = 1, idleTimer = null, playToken = 0, lastTrigger = 0;
 const pending = new Map();
@@ -129,6 +143,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       const s = await settings();
       const kind = message.kind;
       const allowed = s.enabled !== false && ((kind === "win" && s.onWin) || ((kind === "second" || kind === "third") && s.onPodium) || (kind === "jackpot" && s.onJackpot));
+      if (!(await inMyStream(sender))) {
+        await chrome.storage.local.set({lastSeen: {text: "(Siegermeldung in einem anderen Stream)", result: "Ignoriert: nicht der festgelegte Stream", at: Date.now()}});
+        return sendResponse({ok: false, reason: "anderer Stream"});
+      }
       if (!allowed || Date.now() - lastTrigger < COOLDOWN_MS) return sendResponse({ok: false});
       lastTrigger = Date.now();
       await chrome.storage.local.set({lastEvent: {kind, at: Date.now()}});
@@ -154,5 +172,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     playToken++;
     Promise.all([...devices.keys()].map(i => send("StopDeviceCmd", {DeviceIndex: i}).catch(() => {}))).then(() => sendResponse({ok: true}));
     return true;
+  }
+});
+
+// Nach Installation, Update oder „Neu laden“ direkt in offene JOYclub-Tabs einspielen,
+// damit der Livestream-Tab nicht neu geladen werden muss.
+chrome.runtime.onInstalled.addListener(async () => {
+  const tabs = await chrome.tabs.query({url: ["https://www.joyclub.de/*", "https://joyclub.de/*"]});
+  for (const tab of tabs) {
+    if (tab.discarded || tab.id === undefined) continue;
+    try { await chrome.scripting.executeScript({target: {tabId: tab.id, allFrames: true}, files: ["content.js"]}); } catch {}
   }
 });
